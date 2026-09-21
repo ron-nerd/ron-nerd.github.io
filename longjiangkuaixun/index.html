@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="龙江快讯提供黑龙江地区最新、最全的新闻资讯，涵盖时政要闻、社会民生、经济发展、旅游文化等热点话题，致力于打造本地化、权威、高效的信息服务平台。">
+    <meta name="keywords" content="龙江快讯,黑龙江新闻,哈尔滨新闻,黑龙江资讯,本地新闻,时政民生">
+    <title>龙江快讯-黑龙江本地新闻与民生资讯聚合平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #e63946;
+            --accent-color: #f1faee;
+            --text-dark: #1d3557;
+            --text-gray: #6c757d;
+            --bg-light: #f8f9fa;
+            --border-color: #dee2e6;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-unit);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            margin-right: 8px;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .top-bar {
+            background-color: var(--text-dark);
+            color: #fff;
+            font-size: 0.875rem;
+            padding: 8px 0;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-links a {
+            color: #ccc;
+            margin-left: 15px;
+        }
+
+        .top-links a:hover {
+            color: #fff;
+        }
+
+        .main-header {
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .search-box {
+            display: flex;
+            width: 400px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        /* Nav */
+        nav {
+            background-color: var(--primary-color);
+        }
+
+        .nav-list {
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .nav-list li a {
+            display: block;
+            padding: 12px 20px;
+            color: #fff;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-list li a:hover, .nav-list li a.active {
+            background-color: rgba(255,255,255,0.15);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 30px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .hero-main {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .hero-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 20px;
+            color: #fff;
+        }
+
+        .hero-overlay h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-sub {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-card {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 15px;
+            color: #fff;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        /* News List */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-thumb {
+            width: 200px;
+            height: 140px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .news-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .news-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .news-desc {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .news-meta span {
+            margin-right: 15px;
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .rank-list {
+            counter-reset: rank;
+        }
+
+        .rank-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .rank-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .rank-list li::before {
+            counter-increment: rank;
+            content: counter(rank);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .rank-list li a {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .rank-list li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .category-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            padding: 15px 5px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .category-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0,86,179,0.1);
+        }
+
+        .category-item h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .category-item p {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-main {
+                height: 300px;
+            }
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .news-item {
+                flex-direction: column;
+            }
+            .news-thumb {
+                width: 100%;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-box {
+                display: none;
+            }
+            .top-bar {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-list {
+                padding-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span>欢迎访问龙江快讯，了解最新本地动态</span>
+            <div class="top-links">
+                <a href="#">登录</a>
+                <a href="#">注册</a>
+                <a href="#">投稿</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">龙江<span>快讯</span></a>
+            <div class="search-box">
+                <input type="text" placeholder="搜索新闻、资讯或关键词...">
+                <button type="button">搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">时政要闻</a></li>
+                <li><a href="#">社会民生</a></li>
+                <li><a href="#">经济发展</a></li>
+                <li><a href="#">文化旅游</a></li>
+                <li><a href="#">教育体育</a></li>
+                <li><a href="#">法治在线</a></li>
+                <li><a href="#">健康龙江</a></li>
+                <li><a href="#">视频新闻</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-main">
+                    <a href="#">
+                        <img src="https://picsum.photos/seed/news_hero/800/400" alt="头条新闻">
+                        <div class="hero-overlay">
+                            <span class="tag">特别关注</span>
+                            <h2>黑龙江省发布2023年经济社会发展统计公报，多项指标稳步增长</h2>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">数据显示，全省经济运行呈现稳中向好态势，新动能不断壮大...</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="hero-sub">
+                    <div class="hero-card">
+                        <a href="#">
+                            <img src="https://picsum.photos/seed/news_sub1/400/200" alt="副头条">
+                            <div class="overlay">
+                                <h3>哈尔滨冰雪大世界即将开园，打造全新冰雪体验</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hero-card">
+                        <a href="#">
+                            <img src="https://picsum.photos/seed/news_sub2/400/200" alt="副头条">
+                            <div class="overlay">
+                                <h3>全省粮食生产再获丰收，总产量有望创新高</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- News Feed -->
+            <section>
+                <h2 class="section-title">最新资讯</h2>
+                <div class="news-list">
+                    <article class="news-item">
+                        <div class="news-thumb">
+                            <a href="#"><img src="https://picsum.photos/seed/news1/200/140" alt="新闻图片"></a>
+                        </div>
+                        <div class="news-info">
+                            <a href="#"><h3 class="news-title">黑龙江多措并举优化营商环境，激发市场主体活力</h3></a>
+                            <p class="news-desc">近日，省发改委、省营商局联合发布多项优化营商环境新举措，旨在进一步降低企业运营成本，提升政务服务效率，为全省经济高质量发展注入新动力。</p>
+                            <div class="news-meta">
+                                <span>时政要闻</span>
+                                <span>2小时前</span>
+                                <span>评论 128</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-thumb">
+                            <a href="#"><img src="https://picsum.photos/seed/news2/200/140" alt="新闻图片"></a>
+                        </div>
+                        <div class="news-info">
+                            <a href="#"><h3 class="news-title">哈尔滨地铁3号线二期工程全线贯通，预计明年开通</h3></a>
+                            <p class="news-desc">随着最后一段轨道铺设完成，备受市民关注的哈尔滨地铁3号线二期工程正式实现全线贯通。这将进一步完善我市轨道交通网络，有效缓解早晚高峰交通压力。</p>
+                            <div class="news-meta">
+                                <span>城市交通</span>
+                                <span>4小时前</span>
+                                <span>评论 356</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-thumb">
+                            <a href="#"><img src="https://picsum.photos/seed/news3/200/140" alt="新闻图片"></a>
+                        </div>
+                        <div class="news-info">
+                            <a href="#"><h3 class="news-title">牡丹江镜泊湖景区入选国家级旅游度假区名单</h3></a>
+                            <p class="news-desc">文化和旅游部公布新一批国家级旅游度假区名单，黑龙江省牡丹江市镜泊湖景区凭借独特的火山熔岩地貌和秀美的自然风光成功入选，成为我省旅游的一张亮丽名片。</p>
+                            <div class="news-meta">
+                                <span>文化旅游</span>
+                                <span>6小时前</span>
+                                <span>评论 89</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-thumb">
+                            <a href="#"><img src="https://picsum.photos/seed/news4/200/140" alt="新闻图片"></a>
+                        </div>
+                        <div class="news-info">
+                            <a href="#"><h3 class="news-title">黑龙江大豆价格行情平稳，农户销售进度加快</h3></a>
+                            <p class="news-desc">随着新季大豆陆续上市，我省大豆价格保持相对稳定。各地农业农村部门积极组织收购，确保农民卖得出、卖得好，保障国家粮食安全。</p>
+                            <div class="news-meta">
+                                <span>农村经济</span>
+                                <span>8小时前</span>
+                                <span>评论 45</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button style="padding: 10px 30px; background-color: var(--bg-light); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; color: var(--text-dark);">加载更多</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside>
+                <div class="sidebar-widget">
+                    <h3 class="section-title" style="border:none; margin-bottom: 15px;">24小时热榜</h3>
+                    <ul class="rank-list">
+                        <li><a href="#">黑龙江新增多例确诊病例，防控措施升级</a></li>
+                        <li><a href="#">黑龙江寒潮来袭，部分地区气温骤降20度</a></li>
+                        <li><a href="#">全省中小学寒假时间确定，共放假4周</a></li>
+                        <li><a href="#">齐齐哈尔扎龙湿地丹顶鹤数量创历史新高</a></li>
+                        <li><a href="#">黑河口岸通关效率提升，中俄贸易持续活跃</a></li>
+                        <li><a href="#">我省发布暴雨蓝色预警，注意防范城市内涝</a></li>
+                        <li><a href="#">大庆油田年原油产量突破2000万吨</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="section-title" style="border:none; margin-bottom: 15px;">频道分类</h3>
+                    <div class="category-grid">
+                        <div class="category-item">
+                            <h4>时政</h4>
+                            <p>234 篇</p>
+                        </div>
+                        <div class="category-item">
+                            <h4>民生</h4>
+                            <p>156 篇</p>
+                        </div>
+                        <div class="category-item">
+                            <h4>财经</h4>
+                            <p>98 篇</p>
+                        </div>
+                        <div class="category-item">
+                            <h4>教育</h4>
+                            <p>112 篇</p>
+                        </div>
+                        <div class="category-item">
+                            <h4>房产</h4>
+                            <p>87 篇</p>
+                        </div>
+                        <div class="category-item">
+                            <h4>汽车</h4>
+                            <p>65 篇</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="section-title" style="border:none; margin-bottom: 15px;">广告服务</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">龙江快讯是黑龙江地区领先的新闻资讯门户，覆盖全省13个地市，每日发布最新热点信息。</p>
+                    <a href="#" style="display: block; background-color: var(--primary-color); color: #fff; text-align: center; padding: 10px; border-radius: 4px; font-size: 0.9rem;">联系我们投放广告</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>龙江快讯</h3>
+                    <p>龙江快讯致力于为龙江百姓提供最及时、最准确、最全面的本地新闻资讯服务。</p>
+                    <p>关注龙江发展，记录时代变迁。</p>
+                </div>
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">免责声明</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>新闻中心</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">时政要闻</a></li>
+                        <li><a href="#">社会民生</a></li>
+                        <li><a href="#">经济发展</a></li>
+                        <li><a href="#">文化旅游</a></li>
+                        <li><a href="#">视频专区</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>联系方式</h3>
+                    <ul class="footer-links">
+                        <li><p>电话：0451-12345678</p></li>
+                        <li><p>邮箱：contact@longjiangnews.com</p></li>
+                        <li><p>地址：黑龙江省哈尔滨市南岗区XX路XX号</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 龙江快讯 版权所有 | 互联网新闻信息服务许可证：XXXXXXXXX</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+                          </html>
