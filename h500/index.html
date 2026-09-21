@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="H500 综合服务平台提供高性能硬件评测、行业解决方案及企业级技术应用指南，帮助用户了解H500规格参数、应用场景及选型建议。">
+    <meta name="keywords" content="H500, H500评测, H500参数, H500应用, 硬件方案">
+    <title>H500-高性能硬件评测与行业解决方案指南</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #00a8cc;
+            --dark-bg: #1a1f2c;
+            --light-bg: #f4f7f6;
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--light-bg);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #004494;
+            border-color: #004494;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2c3e50 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Specs Grid */
+        .specs-section {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .spec-card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--secondary-color);
+        }
+
+        .spec-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .spec-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .spec-card p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Applications Section */
+        .applications {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .app-item {
+            display: flex;
+            gap: 20px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            align-items: flex-start;
+        }
+
+        .app-icon-box {
+            background-color: rgba(0, 168, 204, 0.1);
+            color: var(--secondary-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .app-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .app-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .app-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .app-list li::before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        td {
+            color: var(--text-main);
+        }
+
+        tr:hover td {
+            background-color: #f9f9f9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .faq-question:hover {
+            background-color: #f0f0f0;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: var(--text-light);
+            background-color: #fafafa;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 200px; /* Approximate max height */
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: #b0b8c4;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">H500<span>Pro</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#specs" class="active">规格参数</a></li>
+                    <li><a href="#applications">应用场景</a></li>
+                    <li><a href="#comparison">选型对比</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>H500 专业级解决方案</h1>
+                <p>面向企业级应用与高性能计算场景，提供卓越的稳定性、效率与可扩展性，助力业务数字化转型。</p>
+                <div class="hero-buttons">
+                    <a href="#specs" class="btn btn-primary">查看详细参数</a>
+                    <a href="#applications" class="btn btn-outline" style="color: white; border-color: white;">探索应用场景</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specs Section -->
+        <section id="specs" class="specs-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>核心性能指标</h2>
+                    <p>基于工业级标准设计，满足严苛环境下的持续运行需求</p>
+                </div>
+                <div class="specs-grid">
+                    <article class="spec-card">
+                        <div class="spec-icon">⚡</div>
+                        <h3>高效能处理</h3>
+                        <p>搭载最新一代处理器架构，支持多线程并发运算，计算效率提升30%，功耗优化显著。</p>
+                    </article>
+                    <article class="spec-card">
+                        <div class="spec-icon">🛡️</div>
+                        <h3>工业级防护</h3>
+                        <p>宽温设计范围(-20°C至60°C)，防尘防水等级IP65，适应恶劣户外及工业环境。</p>
+                    </article>
+                    <article class="spec-card">
+                        <div class="spec-icon">🔗</div>
+                        <h3>高扩展性</h3>
+                        <p>提供丰富的I/O接口与扩展槽位，支持多种硬件模块热插拔，灵活适配不同业务负载。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section id="applications" class="applications">
+            <div class="container">
+                <div class="section-header">
+                    <h2>典型应用场景</h2>
+                    <p>从智能制造到智慧城市，H500全方位赋能各行各业</p>
+                </div>
+                <div class="app-grid">
+                    <div class="app-item">
+                        <div class="app-icon-box">🏭</div>
+                        <div class="app-content">
+                            <h3>智能制造与工业控制</h3>
+                            <p>作为边缘计算节点，实时处理传感器数据，实现生产线的自动化监控与故障预警。</p>
+                            <ul class="app-list">
+                                <li>PLC逻辑控制</li>
+                                <li>视觉检测系统</li>
+                                <li>数据采集与传输</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon-box">📡</div>
+                        <div class="app-content">
+                            <h3>智慧交通与监控</h3>
+                            <p>部署于交通枢纽与公共区域，支持高清视频流实时分析与存储，提升城市管理水平。</p>
+                            <ul class="app-list">
+                                <li>智能交通信号控制</li>
+                                <li>视频监控边缘分析</li>
+                                <li>电子收费系统(ETC)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon-box">🏥</div>
+                        <div class="app-content">
+                            <h3>医疗设备集成</h3>
+                            <p>在医疗影像设备与生命体征监测系统中，提供可靠的数据处理与交互支持。</p>
+                            <ul class="app-list">
+                                <li>CT/MRI辅助处理</li>
+                                <li>远程医疗终端</li>
+                                <li>药房自动化管理</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon-box">📡</div>
+                        <div class="app-content">
+                            <h3>通信基站边缘计算</h3>
+                            <p>降低回传带宽压力，在基站侧完成内容过滤与缓存，提升网络响应速度。</p>
+                            <ul class="app-list">
+                                <li>5G基站小基站</li>
+                                <li>网络切片处理</li>
+                                <li>无线接入网关</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="comparison">
+            <div class="container">
+                <div class="section-header">
+                    <h2>H500 系列选型对比</h2>
+                    <p>针对不同负载需求，提供多样化的配置方案</p>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>特性指标</th>
+                                <th>H500 标准版</th>
+                                <th>H500 增强版</th>
+                                <th>H500 工业版</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>处理器性能</td>
+                                <td>双核 / 4线程</td>
+                                <td>四核 / 8线程</td>
+                                <td>工业级加固四核</td>
+                            </tr>
+                            <tr>
+                                <td>内存容量</td>
+                                <td>8GB DDR4</td>
+                                <td>16GB DDR4</td>
+                                <td>8GB-32GB ECC</td>
+                            </tr>
+                            <tr>
+                                <td>存储接口</td>
+                                <td>2x SATA III</td>
+                                <td>4x SATA III + M.2</td>
+                                <td>4x SATA III + NVMe</td>
+                            </tr>
+                            <tr>
+                                <td>工作温度</td>
+                                <td>0°C ~ 45°C</td>
+                                <td>-10°C ~ 50°C</td>
+                                <td>-20°C ~ 60°C</td>
+                            </tr>
+                            <tr>
+                                <td>认证标准</td>
+                                <td>CE / FCC</td>
+                                <td>CE / FCC / RoHS</td>
+                                <td>CE / FCC / CECC</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>常见问题解答</h2>
+                    <p>关于 H500 系列产品的技术支持与使用指南</p>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">H500 工业版的工作温度范围是多少？</div>
+                        <div class="faq-answer">
+                            <p>H500 工业版设计工作温度范围为 -20°C 至 60°C，能够适应极寒或高温的工业现场环境，无需额外的温控措施。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">标准版与增强版在扩展性上有何区别？</div>
+                        <div class="faq-answer">
+                            <p>标准版主要满足基础数据处理需求，扩展性有限；增强版增加了 M.2 固态硬盘插槽和更多的 USB 接口，便于接入外部存储和传感器设备。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">是否支持 Windows 10 或 Linux 系统？</div>
+                        <div class="faq-answer">
+                            <p>是的，H500 系列支持主流操作系统。工业版特别针对 Linux 内核进行了驱动优化，适合作为服务器或嵌入式设备使用。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">如何选择适合我业务场景的版本？</div>
+                        <div class="faq-answer">
+                            <p>建议根据您的应用环境（室内/室外）、数据处理负载以及认证要求来选择。如果用于户外监控，请务必选择工业版。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 15px; display:inline-block;">H500<span>Pro</span></a>
+                    <p style="font-size: 14px; line-height: 1.8;">
+                        致力于为全球客户提供高性能、高可靠性的计算硬件解决方案。从设计到制造，我们严格把控每一个环节，确保产品品质。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品系列</h4>
+                    <ul>
+                        <li><a href="#">H500 标准版</a></li>
+                        <li><a href="#">H500 增强版</a></li>
+                        <li><a href="#">H500 工业版</a></li>
+                        <li><a href="#">配件与扩展</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>支持与服务</h4>
+                    <ul>
+                        <li><a href="#">驱动下载</a></li>
+                        <li><a href="#">技术文档</a></li>
+                        <li><a href="#">保修政策</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">发展历程</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">合作伙伴</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 H500 Pro Solutions. All Rights Reserved. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // Simple FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                const isActive = parent.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(child => {
+                    child.classList.remove('active');
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    parent.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
