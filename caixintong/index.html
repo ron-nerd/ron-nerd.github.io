@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="彩信通 - 专业的一站式短信营销与彩信发送平台。提供企业短信、群发彩信、验证码通知、会员营销等解决方案，支持API接口对接，覆盖全国移动、联通、电信网络。">
+    <meta name="keywords" content="彩信通,短信群发,企业短信,彩信发送,短信营销,验证码短信,营销短信">
+    <title>彩信通 - 企业级短信营销与彩信发送服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #0f172a;
+            --accent-color: #f59e0b;
+            --bg-light: #f8fafc;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            color: var(--text-main);
+            background-color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary-color); }
+
+        /* Header & Nav */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .cta-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature-tag {
+            background: #dbeafe;
+            color: var(--primary-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+        }
+
+        .btn-outline:hover {
+            background: #eff6ff;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Solutions Section */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* Pricing Section */
+        .pricing-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .price-features {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .check-icon {
+            color: var(--primary-color);
+        }
+
+        /* API Section */
+        .api-section {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .api-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .api-content {
+            flex: 1;
+        }
+
+        .api-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .api-content p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .code-block {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #e2e8f0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 10px;
+            background: #334155;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 15px;
+            color: var(--text-light);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-item:not(.active) .faq-question::after {
+            content: '+';
+        }
+
+        /* Footer */
+        footer {
+            background: #f1f5f9;
+            padding: 60px 0 20px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #cbd5e1;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Simplified for mobile */
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-features {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .api-container {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span>彩信</span>通
+            </a>
+            <nav class="nav-links">
+                <a href="#solutions">解决方案</a>
+                <a href="#pricing">资费标准</a>
+                <a href="#api">API接口</a>
+                <a href="#faq">常见问题</a>
+            </nav>
+            <a href="#contact" class="cta-btn">免费试用</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <div class="hero-features">
+                        <span class="feature-tag">99.9% 到达率</span>
+                        <span class="feature-tag">三网合一通道</span>
+                        <span class="feature-tag">极速发送</span>
+                    </div>
+                    <h1>连接企业与客户的<br>智能短信与彩信通道</h1>
+                    <p>彩信通提供稳定、安全、高效的企业短信和WAP群发彩信服务。支持验证码、会员营销、活动通知等多种场景，助您精准触达每一位用户。</p>
+                    <div class="hero-buttons">
+                        <a href="#pricing" class="cta-btn">立即咨询</a>
+                        <a href="#api" class="btn-outline">查看API文档</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- Placeholder for a dashboard or mobile interface visualization -->
+                    <img src="https://picsum.photos/seed/smsdashboard/600/400" alt="短信营销管理后台界面示意图" width="600" height="400">
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-bar">
+            <div class="container stats-grid">
+                <div class="stat-item">
+                    <h3>10亿+</h3>
+                    <p>累计发送条数</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>合作企业客户</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>通道到达率</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24h</h3>
+                    <p>实时监控系统</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section id="solutions" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>全场景短信解决方案</h2>
+                    <p>无论您的业务规模大小，彩信通都能提供匹配的发送策略与技术服务，确保信息触达准确、及时。</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card">
+                        <div class="card-icon">🔐</div>
+                        <h3>验证码短信</h3>
+                        <p>保障账户安全，支持图形验证码、数字验证码等多种格式。毫秒级响应，确保用户注册、登录、支付等环节的安全顺畅。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">📢</div>
+                        <h3>会员营销短信</h3>
+                        <p>基于用户画像进行精准推送。支持节假日问候、新品上市、促销活动等，提高用户活跃度与复购率。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">📱</div>
+                        <h3>WAP彩信</h3>
+                        <p>支持图文并茂的信息展示。包含产品介绍、活动海报、H5链接等，提供比短信更丰富的视觉体验。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">🔔</div>
+                        <h3>订单通知</h3>
+                        <p>实时同步订单状态，包括发货提醒、物流更新、签收通知等，提升客户服务满意度。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">🚨</div>
+                        <h3>系统告警</h3>
+                        <p>适用于软件服务、网络设备等场景，当系统出现异常时，第一时间通过短信通知运维人员。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">📞</div>
+                        <h3>回呼服务</h3>
+                        <p>利用回呼线路技术，隐藏真实号码，实现群发与单发的低成本运营，保护企业隐私。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>灵活透明的资费标准</h2>
+                    <p>无隐形消费，按量付费。新用户注册即可获得免费体验额度。</p>
+                </div>
+                <div class="grid-3">
+                    <div class="pricing-card">
+                        <h3>基础版</h3>
+                        <div class="price">¥0.045<span>/条</span></div>
+                        <ul class="price-features">
+                            <li><span class="check-icon">✓</span> 短信发送服务</li>
+                            <li><span class="check-icon">✓</span> 实时发送查询</li>
+                            <li><span class="check-icon">✓</span> 基础报表统计</li>
+                            <li><span class="check-icon">✓</span> 7x12小时技术支持</li>
+                        </ul>
+                        <a href="#" class="btn-outline" style="display:inline-block; width:100%">选择此方案</a>
+                    </div>
+                    <div class="pricing-card popular">
+                        <div class="badge">推荐</div>
+                        <h3>专业版</h3>
+                        <div class="price">¥0.040<span>/条</span></div>
+                        <ul class="price-features">
+                            <li><span class="check-icon">✓</span> 短信发送服务</li>
+                            <li><span class="check-icon">✓</span> 彩信发送服务</li>
+                            <li><span class="check-icon">✓</span> 定时发送功能</li>
+                            <li><span class="check-icon">✓</span> 批量导入导出</li>
+                            <li><span class="check-icon">✓</span> 7x24小时专属客服</li>
+                        </ul>
+                        <a href="#" class="cta-btn" style="display:inline-block; width:100%">选择此方案</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>定制版</h3>
+                        <div class="price">面议</div>
+                        <ul class="price-features">
+                            <li><span class="check-icon">✓</span> 独立通道接口</li>
+                            <li><span class="check-icon">✓</span> 私有化部署支持</li>
+                            <li><span class="check-icon">✓</span> 定制化开发对接</li>
+                            <li><span class="check-icon">✓</span> 售后技术驻场</li>
+                        </ul>
+                        <a href="#" class="btn-outline" style="display:inline-block; width:100%">联系销售</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Section -->
+        <section id="api" class="section api-section">
+            <div class="container api-container">
+                <div class="api-content">
+                    <h2>开放API接口对接</h2>
+                    <p>提供标准HTTP接口，支持PHP、Java、Python、C#等多种语言。开发者可轻松将短信功能集成到现有系统中，实现自动化发送。</p>
+                    <ul style="margin-bottom: 30px;">
+                        <li style="margin-bottom: 10px;">• 完善的文档与SDK支持</li>
+                        <li style="margin-bottom: 10px;">• 支持批量接口与单条接口</li>
+                        <li style="margin-bottom: 10px;">• 实时回调通知与状态查询</li>
+                    </ul>
+                    <a href="#" class="cta-btn">下载开发文档</a>
+                </div>
+                <div class="api-code">
+                    <div class="code-block">
+                        <span class="code-label">HTTP POST</span>
+                        <pre>https://api.cmx.com/sms/send
+Content-Type: application/json
+
+{
+  "account": "your_account",
+  "password": "your_password",
+  "mobile": "13800138000",
+  "content": "【彩信通】您的验证码是123456，5分钟内有效。",
+  "sign": "彩信通"
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-header">
+                    <h2>常见问题解答</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item active">
+                        <div class="faq-question">发送短信需要多长时间？</div>
+                        <div class="faq-answer">正常情况下，短信发送仅需几秒钟即可到达用户手机。高峰期可能会有短暂延迟，但我们的系统会自动排队处理，确保送达。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">短信会被拦截吗？如何避免？</div>
+                        <div class="faq-answer">短信是否被拦截取决于内容是否违规以及发送频率。我们建议企业使用正规的企业签名，避免频繁群发骚扰信息，并遵守《中华人民共和国广告法》。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">支持哪些运营商？</div>
+                        <div class="faq-answer">我们支持中国移动、中国联通、中国电信三大运营商的全网发送，确保覆盖所有用户群体。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">如何获取API密钥？</div>
+                        <div class="faq-answer">登录我们的控制台，在“账户设置”中即可查看和重置您的API账号与密码。初次使用建议先在测试通道进行调试。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 20px; display:inline-block;">
+                        <span>彩信</span>通
+                    </a>
+                    <p>专注企业级短信与彩信服务，致力于为中小企业提供低成本、高效率的数字化沟通解决方案。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品服务</h4>
+                    <ul>
+                        <li><a href="#">企业短信</a></li>
+                        <li><a href="#">彩信发送</a></li>
+                        <li><a href="#">语音通知</a></li>
+                        <li><a href="#">回呼线路</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">API文档</a></li>
+                        <li><a href="#">计费说明</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">联系客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>客服热线：400-123-4567</li>
+                        <li>商务合作：bd@cmx.com</li>
+                        <li>公司地址：北京市朝阳区科技园A座</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 彩信通 All Rights Reserved. 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Smooth Scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
